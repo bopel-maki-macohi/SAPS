@@ -38,9 +38,11 @@ class LevelOne extends FlxState
 		{
 			jumping = true;
 
-			FlxTween.tween(sinco, {y: sinco.y - sinco.height * 4}, .25, {ease: FlxEase.backOut})
-				.then(FlxTween.tween(sinco, {y: sinco.y + sinco.height * 4}, .25, {
-					ease: FlxEase.backIn,
+            var ogSincoY:Float = sinco.y;
+
+			FlxTween.tween(sinco, {y: ogSincoY - sinco.height * 4}, .25, {ease: FlxEase.sineOut})
+				.then(FlxTween.tween(sinco, {y: ogSincoY}, .25, {
+					ease: FlxEase.sineIn,
 					onComplete: t ->
 					{
 						jumping = false;
