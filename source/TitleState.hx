@@ -1,5 +1,7 @@
 package;
 
+import levels.LevelOne;
+import flixel.FlxG;
 import flixel.text.FlxText;
 import flixel.FlxState;
 
@@ -15,5 +17,10 @@ class TitleState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		if (FlxG.keys.justPressed.ENTER)
+		{
+			FlxG.switchState(() -> new LevelOne());
+		}
 	}
 }
