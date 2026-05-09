@@ -19,7 +19,7 @@ class LevelOne extends FlxState
 	{
 		super.create();
 
-		sinco = new FlxSprite().makeGraphic(128, 128, FlxColor.LIME);
+		sinco = new FlxSprite().makeGraphic(32, 32, FlxColor.LIME);
 		add(sinco);
 
 		sinco.screenCenter();
