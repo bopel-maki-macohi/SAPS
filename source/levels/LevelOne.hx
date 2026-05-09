@@ -38,16 +38,36 @@ class LevelOne extends FlxState
 		{
 			jumping = true;
 
-            var ogSincoY:Float = sinco.y;
+			var ogSincoY:Float = sinco.y;
 
-			FlxTween.tween(sinco, {y: ogSincoY - sinco.height * 4}, .25, {ease: FlxEase.sineOut})
-				.then(FlxTween.tween(sinco, {y: ogSincoY}, .25, {
-					ease: FlxEase.sineIn,
-					onComplete: t ->
-					{
-						jumping = false;
-					}
-				}));
+			FlxTween.tween(sinco, {y: ogSincoY - sinco.height * 4}, .25, {ease: FlxEase.sineOut}).then(FlxTween.tween(sinco, {y: ogSincoY}, .25, {
+				ease: FlxEase.sineIn,
+				onComplete: t ->
+				{
+					jumping = false;
+				}
+			}));
+		}
+
+		for (obstacle in obstacles)
+		{
+			obstacle.x -= (obstacle.width * 4) * elapsed;
+		}
+
+		if (FlxG.random.float() < .1)
+		{
+			var newobs = new FlxSprite().makeGraphic(64, 64, FlxColor.GRAY);
+
+			newobs.screenCenter();
+
+			newobs.x = FlxG.width + newobs.width;
+			if (obstacles.length > 0)
+				newobs.x += obstacles.members[obstacles.length - 1].x * 0.2;
+
+			obstacles.add(newobs);
+
+			if (FlxG.random.float() < .15)
+				newobs.x += newobs.width * 2;
 		}
 	}
 }
